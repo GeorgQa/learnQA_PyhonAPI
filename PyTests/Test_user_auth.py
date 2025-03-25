@@ -54,12 +54,15 @@ class TestUSerAuth:
         auth_sid = response1.cookies.get("auth_sid")
         token = response1.headers.get("x-csrf-token")
 
+        #Делаем условие что если куки или токен не передан то значение user_id_form_check_method = 0
         if condition == "no_cookie":
+            #Условие без токена
             response2 = requests.get(
                 "https://playground.learnqa.ru/api/user/auth",
                 headers={"x-csrf-token":token}
             )
         else:
+            #условие без куки
             response2 = requests.get(
                 "https://playground.learnqa.ru/api/user/auth",
                 cookies={"auth_sid":auth_sid}
