@@ -1,9 +1,17 @@
+
 import pytest, requests
 
 class TestFirstAPI:
-    def test_hello_call(self):
+    #Кортеж с разными тест данными для запуска теста
+    names = [
+        ("Vitalii"),
+        ("Arseniy"),
+        ("")
+    ]
+
+    @pytest.mark.parametrize('name', names)
+    def test_hello_call(self, name):
         url = 'https://playground.learnqa.ru/api/hello'
-        name =  'Vitalii'
         data = {'name':name}
 
         response = requests.get(url=url, params=data)
@@ -13,6 +21,11 @@ class TestFirstAPI:
         response_dict = response.json()
         assert "answer" in response_dict, "There is no field 'answer' in the response"
 
-        expected_response_text = f"Hello, {name}"
+        if len(name)= 0:
+            expected_response_text = "Hello, someone"
+        else:
+            expected_response_text = f"Hello, {name}"
+
         actual_response_text = response_dict["answer"]
+        #Сравнение актуального ответа и имени которое выбрали в кортеже
         assert actual_response_text == expected_response_text, f"Actual is not correct {name}"
