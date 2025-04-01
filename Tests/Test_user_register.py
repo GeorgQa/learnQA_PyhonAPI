@@ -18,7 +18,6 @@ class TestUserRegister(BaseCase):
         email='inkotov@example.com'
         data = self.prepare_registration_data(email)
         response = MyRequests.post("/user/", data=data)
-
         Assertions.assert_code_status(response, 400) #В ответе статус код 400
         assert response.content.decode("utf-8") == f"Users with email '{email}' already exists", f"Unexpected response comtrnt{response.content}"
 
