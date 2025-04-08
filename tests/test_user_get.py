@@ -1,7 +1,7 @@
 import requests
 
-from Requests_and_json.Cokie import cookies
-from Requests_and_json.Headers_request_resoponse import headers
+from requestsAndJson.Cokie import cookies
+from requestsAndJson.Headers_request_resoponse import headers
 from lib.My_requests import MyRequests
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
