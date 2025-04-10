@@ -1,28 +1,48 @@
 import requests
-
-from Requests_and_json.Headers_request_resoponse import response
+from lib.logger import Logger
 
 
 class MyRequests():
+    @staticmethod
+    def post(uri: str, data: dict = None, headers:dict = None, cookies: dict =None):
+        return MyRequests._send(uri,data,headers,cookies, "POST")
 
     @staticmethod
-    def _send(uel: str, data:dict, headers:dict, cookies: dict, method: str):
-        url = f"https://playground.learnqa.ru/api{}"
+    def get(uri: str, params: dict = None, headers:dict = None, cookies: dict =None):
+        return MyRequests._send(uri,params,headers,cookies, "GET")
+
+    @staticmethod
+    def put(uri: str, data: dict = None, headers:dict = None, cookies: dict =None):
+        return MyRequests._send(uri,data,headers,cookies, "PUT")
+
+    @staticmethod
+    def delete(uri: str, params: dict = None, headers:dict = None, cookies: dict =None):
+        return MyRequests._send(uri,params,headers,cookies, "DELETE")
+
+
+
+    @staticmethod
+    def _send(uri: str, data:dict, headers:dict, cookies: dict, method: str):
+        uri = f"https://playground.learnqa.ru/api{uri}"
 
         if headers is None:
             headers = {}
         if cookies is None:
             cookies = {}
 
+        Logger.add_request(uri,data,headers,cookies,method)
+
         if method =='GET':
-            response = requests.get(url, params= data, headers= headers,cookies= cookies)
+            response = requests.get(uri, params= data, headers= headers,cookies= cookies)
         elif method == 'POST':
-            response = requests.post(url, data=data, headers= headers,cookies=cookies)
+            response = requests.post(uri, data=data, headers= headers,cookies=cookies)
         elif method == 'PUT':
-            response = requests.put(url, data=data, headers=headers, cookies=cookies)
+            response = requests.put(uri, data=data, headers=headers, cookies=cookies)
         elif method == 'DELETE':
-            response = requests.delete(url, params=data, headers=headers, cookies=cookies)
+            response = requests.delete(uri, params=data, headers=headers, cookies=cookies)
         else:
             raise Exception(f"Bad HTTP method '{method}' was received")
+
+        Logger.add_response(response)
 
         return response
