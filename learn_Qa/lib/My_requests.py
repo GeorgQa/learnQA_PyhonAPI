@@ -1,5 +1,5 @@
 import requests
-from lib.logger import Logger
+from learn_Qa.lib.logger import Logger
 
 
 class MyRequests():

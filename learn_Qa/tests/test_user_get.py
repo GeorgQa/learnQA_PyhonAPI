@@ -1,10 +1,6 @@
-import requests
-
-from requestsAndJson.Cokie import cookies
-from requestsAndJson.Headers_request_resoponse import headers
-from lib.My_requests import MyRequests
-from lib.base_case import BaseCase
-from lib.assertions import Assertions
+from learn_Qa.lib.My_requests import MyRequests
+from learn_Qa.lib.base_case import BaseCase
+from learn_Qa.lib.assertions import Assertions
 
 class TestUserGet(BaseCase):
     def test_get_user_details_no_auth(self):
