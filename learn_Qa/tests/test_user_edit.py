@@ -1,7 +1,7 @@
 
-from lib.My_requests import MyRequests
-from lib.base_case import BaseCase
-from lib.assertions import Assertions
+from learn_Qa.lib.My_requests import MyRequests
+from learn_Qa.lib.base_case import BaseCase
+from learn_Qa.lib.assertions import Assertions
 
 class TestUserEdit(BaseCase):
     def test_edit_just_created_user(self):

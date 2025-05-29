@@ -1,8 +1,8 @@
 
 
-from lib.My_requests import MyRequests
-from lib.base_case import BaseCase
-from lib.assertions import Assertions
+from learn_Qa.lib.My_requests import MyRequests
+from learn_Qa.lib.base_case import BaseCase
+from learn_Qa.lib.assertions import Assertions
 
 class TestUserRegister(BaseCase):
     #Вынесли setup в base_case
